@@ -1,10 +1,15 @@
 import { Outlet } from 'react-router-dom';
 
+import MainHeader from '../components/Navigation/MainHeader';
+import SessionsContextProvider from '../store/sessions-context';
+
 export default function Root() {
   return (
     <>
-      {/* Todo: Add Header */}
-      <Outlet />
+      <SessionsContextProvider>
+        <MainHeader />
+        <Outlet />
+      </SessionsContextProvider>
     </>
   );
 }

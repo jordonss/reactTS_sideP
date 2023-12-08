@@ -15,7 +15,7 @@ export default function UpcommingSession({
   onCancel,
 }: UpcommingSessionProps) {
   return (
-    <article className='upcomming-session'>
+    <article className='upcoming-session'>
       <div>
         <h3>{session.title}</h3>
         <p>{session.summary}</p>

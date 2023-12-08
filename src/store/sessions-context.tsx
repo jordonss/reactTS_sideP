@@ -1,6 +1,6 @@
 import { type ReactNode, createContext, useReducer, useContext } from 'react';
 
-type Session = {
+export type Session = {
   id: string;
   title: string;
   summary: string;

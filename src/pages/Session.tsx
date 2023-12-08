@@ -1,30 +1,41 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { SESSIONS } from '../dummy-sessions.ts';
+import Button from '../components/UI/Button.tsx';
+import BookSessions from '../components/Sessions/BookSessions.tsx';
 
 export default function SessionPage() {
   const params = useParams<{ id: string }>();
+  const [isBooking, setIsBooking] = useState(false);
 
   const sessionId = params.id;
   const loadedSession = SESSIONS.find((session) => session.id === sessionId);
 
   if (!loadedSession) {
     return (
-      <main id="session-page">
+      <main id='session-page'>
         <p>No session found!</p>
       </main>
     );
   }
 
+  function handleStartBooking() {
+    setIsBooking(true);
+  }
+
+  function handleStopBooking() {
+    setIsBooking(false);
+  }
 
   return (
-    <main id="session-page">
+    <main id='session-page'>
+      {isBooking && (
+        <BookSessions session={loadedSession} onDone={handleStopBooking} />
+      )}
       <article>
         <header>
-          <img
-            src={loadedSession.image}
-            alt={loadedSession.title}
-          />
+          <img src={loadedSession.image} alt={loadedSession.title} />
           <div>
             <h2>{loadedSession.title}</h2>
             <time dateTime={new Date(loadedSession.date).toISOString()}>
@@ -35,11 +46,11 @@ export default function SessionPage() {
               })}
             </time>
             <p>
-              {/* Todo: Add button that opens "Book Session" dialog / modal */}
+              <Button onClick={handleStartBooking}>Book Session</Button>
             </p>
           </div>
         </header>
-        <p id="content">{loadedSession.description}</p>
+        <p id='content'>{loadedSession.description}</p>
       </article>
     </main>
   );

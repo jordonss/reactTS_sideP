@@ -14,7 +14,7 @@ export default function SessionItem({
   image,
 }: SessionItemProps) {
   return (
-    <article>
+    <article className='session-item'>
       <img src={image} alt={title} />
       <div className='session-data'>
         <div>
